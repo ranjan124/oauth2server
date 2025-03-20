@@ -27,9 +27,7 @@ export default function MainLayout() {
   const { state, logout } = useAuth();
   const profilePictureUrl =
     state.user &&
-    `data:image;base64,${btoa(
-      state.user.profilePicture.reduce((str, n) => str + String.fromCharCode((n + 256) % 256), ''),
-    )}`;
+    `data:image;base64,${btoa(state.user.profilePicture)}`;
   return (
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m">

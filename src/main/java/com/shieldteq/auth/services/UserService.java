@@ -2,11 +2,11 @@ package com.shieldteq.auth.services;
 
 import com.shieldteq.auth.data.User;
 import com.shieldteq.auth.data.UserRepository;
-import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,7 +17,7 @@ public class UserService {
         this.repository = repository;
     }
 
-    public Optional<User> get(Long id) {
+    public Optional<User> get(String id) {
         return repository.findById(id);
     }
 
@@ -25,16 +25,12 @@ public class UserService {
         return repository.save(entity);
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         repository.deleteById(id);
     }
 
     public Page<User> list(Pageable pageable) {
         return repository.findAll(pageable);
-    }
-
-    public Page<User> list(Pageable pageable, Specification<User> filter) {
-        return repository.findAll(filter, pageable);
     }
 
     public int count() {
